@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ### C ###
 # Prerequisites
 *.d
@@ -100,7 +101,24 @@ dkms.conf
 # Built Visual Studio Code Extensions
 *.vsix
 
-### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 .ionide
+# Secrets & keys
+*.key
+*.pem
+*.crt
+*.p12
+*.jks
+
+# Env config
+.env
+.env.local
+config.json
+secrets.json
+
+snu-software-security-public/
+fuzztruction_loc/
+jetson.sh
+secure_installer.sh
+secure_notifier.py
