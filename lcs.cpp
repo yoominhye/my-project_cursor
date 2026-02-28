@@ -22,7 +22,9 @@ int findLongestConseqSubseq ( int arr[], int n ) {
 int main() {
     int n = 7;
     int arr[] = {10, 4, 20, 1, 3, 2, 5};
-    cout << arr;
+
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << (i < n-1 ? " " : "\n");
     cout << "Length of the Longest consecutive subsequence is "
          << findLongestConseqSubseq(arr, n)
          << endl;

@@ -122,3 +122,4 @@ fuzztruction_loc/
 jetson.sh
 secure_installer.sh
 secure_notifier.py
+.gdb_history

@@ -1,5 +1,5 @@
 #include <stdio.h>
-void Func(int k, int m, int e, int*s, double*a)
+void Func(int k, int m, int e, int *s, double *a)
 {
     *s = k + m + e;
     *a = *s/3.0;
