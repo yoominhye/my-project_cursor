@@ -174,7 +174,7 @@ int main() {
 
 //    int data[9] = {30,20,40,10,35,42,37,50,36};
     int bst_data[10] = {30,20,40,10,35,42,37,50,36,30};
-    TreeNode *root = createBSTfromBFSOrder(bst_data, 9);
+    TreeNode *root = createBSTfromBFSOrder(bst_data, 10);
     std::cout << bst_data[0] << " " << bst_data[1] << std::endl;
     for (int i = 0; i < 9; i++) {
         std::cout << bst_data[i] <<" ";
