@@ -59,12 +59,12 @@ class LinkedList {
     };
     void append(int val) {
         head = new Node(val, head);
-    }
+    }/*
     Node* LinkedList:reverseHelper(Node *node, Node *prev){
         if(!node) return prev;
         Node *prev = node->next;
         return reverseHelper(next, node);
-    }
+    }*/
     void reverse(){
         Node *prev = nullptr;
         Node *current = head;
@@ -109,40 +109,40 @@ class LinkedList {
 };
 class Pair {
     private:
-    int *first;
-    int *second;
+        int *first;
+        int *second;
     public:
-    Pair() :first(nullptr), second(nullptr) {}
-    Pair(int *a, int *b) {
-        first = a;
-        second = b;
-    }
-    void add (const Pair& other) {
-        *first += *other.first;
-        *second += *other.second;
-    }
-    void print() {
-        std::cout << "(" << *first << ", " << *second << ")" << std::endl;
-    }
+        Pair() :first(nullptr), second(nullptr) {}
+        Pair(int *a, int *b) {
+            first = a;
+            second = b;
+        }
+        void add (const Pair& other) {
+            *first += *other.first;
+            *second += *other.second;
+        }
+        void print() {
+            std::cout << "(" << *first << ", " << *second << ")" << std::endl;
+        }
 };
 template <class T>
 class TPair {
     private:
-    T *first;
-    T *second;
+        T *first;
+        T *second;
     public:
-    TPair() :first(nullptr), second(nullptr) {}
-    TPair(T *a, T *b) {
-        first = a;
-        second = b;
-    }
-    void add (const TPair* other) {
-        *first += *other.first;
-        *second += *other.second;
-    }
-    void print() {
-        std::cout << "(" << *first << "," << *second << ")" << std::endl;
-    }
+        TPair() :first(nullptr), second(nullptr) {}
+        TPair(T *a, T *b) {
+            first = a;
+            second = b;
+        }
+        void add (const TPair* other) {
+            *first += *other.first;
+            *second += *other.second;
+        }
+        void print() {
+            std::cout << "(" << *first << "," << *second << ")" << std::endl;
+        }
 };
 void printBFS(TreeNode *root){
     if (!root) return;
@@ -173,20 +173,23 @@ int main() {
     list.print();
 
 //    int data[9] = {30,20,40,10,35,42,37,50,36};
-    int data[10] = {30,20,40,10,35,42,37,50,36,30};
-    TreeNode *root = createBSTfromBFSOrder(data, 9);
-    std::cout << data[0] << " " << data[1] << std::endl;
+    int bst_data[10] = {30,20,40,10,35,42,37,50,36,30};
+    TreeNode *root = createBSTfromBFSOrder(bst_data, 9);
+    std::cout << bst_data[0] << " " << bst_data[1] << std::endl;
     for (int i = 0; i < 9; i++) {
-        std::cout << data[i] <<" ";
+        std::cout << bst_data[i] <<" ";
     }
     std::cout << "\n";
     std::cout << "Reconstructed BFS Order: \n";
     printBFS(root); 
     std::cout <<"\n";   
     inorderPrint(root);
+    deleteBST(root);
+
+    std::cout <<"\n";   
+    int data[4] = {1,2,3,4};
     Pair a(data, data+2);
     Pair b(data+1, data+3);
     a.add(b);
     a.print();
-    deleteBST(root);
 }
