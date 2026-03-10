@@ -58,24 +58,16 @@ class LinkedList {
         std::cout << "\nLinkedlist destroyed. All nodes deallocated." << std::endl;
     };
     void append(int val) {
-        head = new Node(val, head);
-    }/*
-    Node* LinkedList:reverseHelper(Node *node, Node *prev){
+        head = new Node(val, head); 
+    }
+    Node* reverseHelper(Node *node, Node *prev){
         if(!node) return prev;
-        Node *prev = node->next;
-        return reverseHelper(next, node);
-    }*/
+        Node *nextNode = node->next;
+        node->next = prev;
+        return reverseHelper(nextNode, node);
+    }
     void reverse(){
-        Node *prev = nullptr;
-        Node *current = head;
-        Node *next = nullptr;
-        while (current) {
-            next = current->next;
-            current-> next = prev;
-            prev = current;
-            current = next;
-        }
-        head = prev;
+        head = reverseHelper(head, nullptr);
     };
     void print() const {
         Node *temp = head;
@@ -105,6 +97,23 @@ class LinkedList {
         }
         current->next = newNode;
         std::cout << "Inserted " << data << " at the end." << std::endl;
+    }
+    friend std::ostream& operator<<(std::ostream& os, const LinkedList& list){
+        Node *temp = list.head;
+        while (temp) {
+            os << temp->data;
+            if (temp->next) os<< " -> ";
+            temp = temp->next;
+        }
+        return os;
+    }
+    LinkedList& operator+= (const LinkedList& other) {
+        Node* temp = other.head;
+        while (temp) {
+            this->append(temp->data);
+            temp = temp->next;
+        }
+        return *this;
     }
 };
 class Pair {
@@ -164,32 +173,43 @@ void inorderPrint(TreeNode *root){
     inorderPrint(root->right);
 }
 int main() {
-    LinkedList list;
+//    int data[9] = {30,20,40,10,35,42,37,50,36};
+    int bst_data[10] = {30,20,40,10,35,42,37,50,36,30};
+    TreeNode *root = createBSTfromBFSOrder(bst_data, 10);
+    std::cout << bst_data[0] << " " << bst_data[1] << std::endl;
+    for (int i = 0; i < 10; i++) {
+        std::cout << bst_data[i] <<" ";
+    }
+    std::cout << std::endl;
+    std::cout << "Reconstructed BFS Order: \n";
+    printBFS(root); 
+    inorderPrint(root);
+    deleteBST(root);
+
+    LinkedList list; //LIFO order
+    LinkedList list1;
+    list1.append(10);
+    list1.append(20);
+    std::cout << std::endl;
     for (int i = 0; i < 3; i++) {
         list.append(i+1);
         printf("%d ", i+1);
     }
     printf("\n");
+    list.reverse();
     list.print();
-
-//    int data[9] = {30,20,40,10,35,42,37,50,36};
-    int bst_data[10] = {30,20,40,10,35,42,37,50,36,30};
-    TreeNode *root = createBSTfromBFSOrder(bst_data, 10);
-    std::cout << bst_data[0] << " " << bst_data[1] << std::endl;
-    for (int i = 0; i < 9; i++) {
-        std::cout << bst_data[i] <<" ";
-    }
-    std::cout << "\n";
-    std::cout << "Reconstructed BFS Order: \n";
-    printBFS(root); 
-    std::cout <<"\n";   
-    inorderPrint(root);
-    deleteBST(root);
-
-    std::cout <<"\n";   
+    list1 += list;
+    list1.print();
+      
     int data[4] = {1,2,3,4};
     Pair a(data, data+2);
     Pair b(data+1, data+3);
     a.add(b);
     a.print();
+    TPair<LinkedList> c(&list, &list1);
+    TPair<LinkedList> d(&list, &list);
+    std::cout << "\n" << "c.print: ";
+    //c.add(d);
+    c.print();
+
 }
