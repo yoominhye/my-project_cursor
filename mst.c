@@ -50,11 +50,17 @@ int prim_mst() {
 }
 
 int main() {
-    scanf("%d", &n);
+    if (scanf("%d", &n) != 1) {
+        fprintf(stderr, "Error reading number of vertices.\n");
+        return 1;
+    }
     printf ("%d\n", n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            scanf("%d", &graph[i][j]);
+            if (scanf("%d", &graph[i][j]) != 1) {
+                fprintf(stderr, "Error reading graph data at (%d, %d).\n", i, j);
+                return 1;
+            }
             printf("%d\t", graph[i][j]);
         }
         printf("\n");
@@ -67,5 +73,6 @@ int main() {
     return 0;
 }
 /*
-인접리스트 + 우선순위큐 쓰면 O(E log V)로 줄일 수 있는데, 이 코드는 단순하게 O(n²)으로 감
+Usage:  ./xxx.out < test.txt
+Complexity?: 인접리스트 + 우선순위큐 쓰면 O(E log V)로 줄일 수 있는데, 이 코드는 단순하게 O(n²)으로 감
 */

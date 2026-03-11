@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX_SIZE 9
+#define MAX_SIZE 10
 #define SWAP(x, y, temp) ( (temp) = (x), (x) = (y), (y) = (temp) )
 
 int partition (int list[], int left, int right) {
@@ -35,7 +35,7 @@ void quick_sort (int list[], int left, int right) {
 int main() {
     int i;
     int n = MAX_SIZE;
-    int list[MAX_SIZE] = {19, 17, 15, 12, 16, 18, 4, 11, 13};
+    int list[MAX_SIZE] = {37, 22, 81, 63, 19, 97, 53, 47, 73, 55};
     quick_sort(list, 0, n-1);
     for (i=0; i<n; i++)
         printf("%3d ", list[i]);

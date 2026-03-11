@@ -42,6 +42,10 @@ void deleteBST(TreeNode *root) {
     delete root;
     root = nullptr;
 }
+int getHeight(TreeNode* node) {
+    if (node == nullptr) return 0;
+    return 1 + std::max(getHeight(node->left), getHeight(node->right));
+}
 class LinkedList {
     private:
     Node *head;
@@ -145,9 +149,9 @@ class TPair {
             first = a;
             second = b;
         }
-        void add (const TPair* other) {
-            *first += *other.first;
-            *second += *other.second;
+        void add (const TPair<T>* other) {
+            *first += *(other->first);
+            *second += *(other->second);
         }
         void print() {
             std::cout << "(" << *first << "," << *second << ")" << std::endl;
@@ -184,13 +188,14 @@ int main() {
     std::cout << "Reconstructed BFS Order: \n";
     printBFS(root); 
     inorderPrint(root);
+    std::cout << "Height of the tree: " << getHeight(root) << std::endl;
     deleteBST(root);
 
     LinkedList list; //LIFO order
     LinkedList list1;
     list1.append(10);
     list1.append(20);
-    std::cout << std::endl;
+    std::cout << std::endl << "Original list: ";
     for (int i = 0; i < 3; i++) {
         list.append(i+1);
         printf("%d ", i+1);
@@ -208,8 +213,8 @@ int main() {
     a.print();
     TPair<LinkedList> c(&list, &list1);
     TPair<LinkedList> d(&list, &list);
+    c.add(&d);
     std::cout << "\n" << "c.print: ";
-    //c.add(d);
     c.print();
 
 }

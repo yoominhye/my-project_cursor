@@ -23,25 +23,20 @@ void union_root(int x, int y) {
  
 vector<p> kruskal() {
     vector<p> mst;
- 
     for (int i = 0; i < edges.size(); i++) {
         p cur_edge = edges[i];
- 
-        //현재 간선이 잇는 두 정점
         int f = cur_edge.second.first;
         int s = cur_edge.second.second;
- 
         //Union-Find로 사이클이 발생하는지 확인
         if (find_root(f) == find_root(s)) continue;        //사이클이 발생한다면 선택하지 않음
- 
         //사이클이 발생하지 않는다면 mst에 현재 간선을 추가
         mst.push_back(cur_edge);
         //Parent 관계 갱신
         union_root(f, s);
- 
         //만약 정점 개수 v에 대해 v - 1개의 간선을 찾았다면 종료
         if (mst.size() == v - 1) return mst;
     }
+    return mst;
 }
  
 void init() {
@@ -49,12 +44,9 @@ void init() {
     edges.push_back({ 4, {1, 3} });
     edges.push_back({ 3, {1, 4} });
     edges.push_back({ 9, {1, 2} });
- 
     edges.push_back({ 4, {2, 4} });
     edges.push_back({ 5, {2, 5} });
- 
     edges.push_back({ 6, {3, 6} });
- 
     edges.push_back({ 2, {4, 5} });
     edges.push_back({ 8, {4, 6} });
  
@@ -79,3 +71,4 @@ int main() {
     }
  
     return 0;
+}
