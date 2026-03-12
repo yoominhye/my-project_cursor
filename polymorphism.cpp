@@ -16,7 +16,7 @@ struct Circle: public Shape {
     Shape* clone() const {
         return new Circle(*this);
     }
-}
+};
 struct Rect: public Shape {
     double w, h;
     Rect(double ww, double hh) : w(ww), h(hh) {}
@@ -26,7 +26,7 @@ struct Rect: public Shape {
     Shape* clone() const {
         return new Rect(*this);
     }
-}
+};
 class Scene {
     vector<Shape*> v;
     public:
@@ -40,4 +40,19 @@ class Scene {
     void add(const Shape& s) {
         v.push_back(s.clone());
     }
+    double total() const {
+        double sum = 0;
+        for (size_t i = 0; i < v.size(); ++i) {
+            sum += v[i]->area(); //(*v[i]).area()
+        }
+        return sum;
+    }
+};
+int main() {
+    Scene a;
+    a.add(Circle(2.0));
+    a.add(Rect(3.0, 4.0));
+    Scene b = a;
+    cout << "A=" << a.total() <<", B=" << b.total() << std::endl;
+    return 0;
 }
