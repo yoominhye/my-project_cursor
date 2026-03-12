@@ -37,6 +37,19 @@ class Scene {
             this->add(*s.v[i]);
         }
     }
+    Scene& operator=(const Scene& s) {
+        if (this == &s) {
+            return *this;
+        }
+        for (size_t i = 0; i < v.size(); ++i){
+            delete v[i];
+        }
+        v.clear();
+        for (size_t i = 0; i < s.v.size(); ++i) {
+            this->add(*s.v[i]);
+        }
+        return *this;
+    }
     void add(const Shape& s) {
         v.push_back(s.clone());
     }
@@ -47,12 +60,17 @@ class Scene {
         }
         return sum;
     }
+    Scene& operator+=(const Shape& s) {
+        this->add(s);
+        return *this;
+    }
 };
 int main() {
     Scene a;
     a.add(Circle(2.0));
     a.add(Rect(3.0, 4.0));
     Scene b = a;
+    b += Rect(1.0,1.0);
     cout << "A=" << a.total() <<", B=" << b.total() << std::endl;
     return 0;
 }
