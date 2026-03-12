@@ -31,5 +31,13 @@ class Scene {
     vector<Shape*> v;
     public:
     Scene() {}
-    ~Scene() { for (size_t i = 0; i < v.size(); ++i) delete[] v[i];}
+    ~Scene() { for (size_t i = 0; i < v.size(); ++i) delete v[i];}
+    Scene (const Scene& s) {
+        for (size_t i = 0; i < s.v.size(); ++i) {
+            this->add(*s.v[i]);
+        }
+    }
+    void add(const Shape& s) {
+        v.push_back(s.clone());
+    }
 }
