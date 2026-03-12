@@ -29,7 +29,7 @@ void Stack:: push(int x){
 }
 int Stack:: pop() {
     if (isEmpty()){return -1;}
-    return arr[--top];
+    return arr[top--];
 }
 bool Stack:: isEmpty() {
     if (top == -1) { return true; }
@@ -43,10 +43,11 @@ void Queue::enqueue(int x) {
     }
 }
 int Queue::dequeue(){
+    int value =arr[front];
     if(isEmpty()) {return -1;}
     else {
         front = (front + 1) % MAX; 
-        return arr[front];}
+        return value;}
 }
 bool Queue:: isEmpty() {
     return (front == rear);}

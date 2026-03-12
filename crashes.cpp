@@ -36,11 +36,10 @@ public:
 
 };
 
-
 void fill_with (Buffer& b, int v) {
     for (size_t i = 0; i < b.size(); ++i) {
         b.at(i) = i;
-    }
+    } 
 }
 
 void analyze_payload(Buffer& buffer) {
